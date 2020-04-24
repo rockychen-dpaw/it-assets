@@ -9,6 +9,7 @@ from knowledge import urls as knowledge_urls
 from recoup import urls as recoup_urls
 from registers import urls as registers_urls
 from assets import urls as assets_urls
+from github import urls as github_urls
 from organisation import urls as organisation_urls
 
 
@@ -31,8 +32,10 @@ urlpatterns = [
     path('healthcheck/', HealthCheckView.as_view(), name='health_check'),
     path('favicon.ico', RedirectView.as_view(url='{}favicon.ico'.format(settings.STATIC_URL)), name='favicon'),
     path('', RedirectView.as_view(url='/admin')),
+    path('github/', include(github_urls)),
 ]
 
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),
 ]
+

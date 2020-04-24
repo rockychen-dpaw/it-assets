@@ -14,3 +14,7 @@ logs/
 *.db
 *.sqlite3
 .coverage
+
+repositories/
+start_server
+

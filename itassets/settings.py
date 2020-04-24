@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'knowledge',
     'recoup',
     'status',
+    'github',
     #'helpdesk',
     #'markdown_deux',
     #'bootstrapform',
@@ -160,7 +161,7 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG' if DEBUG else 'WARNING',
             'class': 'logging.StreamHandler',
             'formatter': 'console'
         },
@@ -168,20 +169,29 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-			'propagate': True,
+	    'propagate': True,
         },
         'django.request': {
             'handlers': ['console'],
             'level': 'WARNING',
-			'propagate': False,
+  	    'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+  	    'propagate': False,
         },
         'itassets': {
             'handlers': ['console'],
-            'level': 'INFO'
+            'level': 'DEBUG' if DEBUG else 'WARNING',
         },
         'sync_tasks': {
             'handlers': ['console'],
-            'level': 'INFO'
+            'level': 'DEBUG' if DEBUG else 'WARNING',
+        },
+        'github': {
+            'handlers': ['console'],
+            'level': 'DEBUG' if DEBUG else 'WARNING',
         },
     }
 }
@@ -232,3 +242,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # status scanning settings
 STATUS_NMAP_TIMEOUT = env('STATUS_NMAP_TIMEOUT', 600)
+
+
+REPOSITORY_ROOT = os.path.join(BASE_DIR,"repositories")
